@@ -10,7 +10,7 @@
 
 Este projeto é uma demonstração de como a tecnologia pode ser usada para criar ferramentas acessíveis de suporte à saúde mental, sem substituir o valor insubstituível da terapia profissional.
 
-![Captura de Tela do PsicoBolso](https://i.imgur.com/your-screenshot-url.png) <!-- SUBSTITUA PELO LINK DA SUA CAPTURA DE TELA -->
+![Captura de Tela do PsicoBolso](show.gif)
 
 ## 📜 Descrição Geral
 
