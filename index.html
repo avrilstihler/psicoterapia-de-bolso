@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicoterapia de Bolso - Tema Escuro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-brain sidebar-logo gradient-text"></i>
+                <h1 class="gradient-text">PsicoBolso</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <button id="navChat" class="nav-item active" data-section="preChatSection">
+                    <i class="fas fa-comments"></i><span>Chat Terapêutico</span>
+                </button>
+                <button id="navDiary" class="nav-item" data-section="diarySection">
+                    <i class="fas fa-book-medical"></i><span>Diário Emocional</span>
+                </button>
+                <button id="navTechniques" class="nav-item" data-section="techniquesSection">
+                    <i class="fas fa-spa"></i><span>Técnicas de Bem-Estar</span>
+                </button>
+                <button id="navAbout" class="nav-item" data-section="aboutSection">
+                    <i class="fas fa-info-circle"></i><span>Sobre</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <p class="important-notice">
+                    <i class="fas fa-exclamation-triangle"></i> Lembre-se: este app não substitui terapia profissional.
+                </p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Seção de Pré-Chat (sem alterações) -->
+            <section id="preChatSection" class="content-section active">
+                <div class="section-header">
+                    <h2 class="gradient-text"><i class="fas fa-shield-alt"></i> Antes de Começar</h2>
+                </div>
+                <div class="pre-chat-content">
+                    <p class="pre-chat-warning">
+                        <strong>Atenção:</strong> O PsicoBolso é uma ferramenta de suporte emocional e autoconhecimento.
+                        Ele <strong>não substitui</strong> a avaliação e o acompanhamento de um psicólogo, psiquiatra ou outro profissional de saúde mental.
+                    </p>
+                    <p>
+                        Se você está em crise, passando por sofrimento intenso, ou tem pensamentos sobre se machucar ou machucar outros,
+                        <strong>procure ajuda profissional imediatamente.</strong>
+                    </p>
+                    <div class="help-channels">
+                        <h4>Canais de Ajuda Urgente:</h4>
+                        <ul>
+                            <li><i class="fas fa-phone-alt"></i> <strong>CVV (Centro de Valorização da Vida):</strong> Ligue 188 (gratuito e sigiloso)</li>
+                            <li><i class="fas fa-hospital"></i> <strong>SAMU:</strong> Ligue 192 (emergências médicas)</li>
+                            <li><i class="fas fa-user-md"></i> Procure um CAPS (Centro de Atenção Psicossocial) ou um pronto-socorro.</li>
+                        </ul>
+                    </div>
+
+                    <div class="pre-chat-form">
+                        <label for="initialFeeling">O que você está sentindo predominantemente hoje?</label>
+                        <input type="text" id="initialFeeling" placeholder="Ex: ansiedade, tristeza, confusão...">
+
+                        <label for="conversationGoal">Qual seu objetivo para esta conversa?</label>
+                        <select id="conversationGoal">
+                            <option value="desabafar">Quero apenas desabafar e ser ouvido(a)</option>
+                            <option value="solucoes">Quero explorar possíveis estratégias ou soluções</option>
+                        </select>
+
+                        <button id="startChatBtn" class="btn-primary"><i class="fas fa-play"></i> Iniciar Nova Conversa</button>
+                    </div>
+                     <div class="previous-chats-section">
+                        <h3><i class="fas fa-history"></i> Conversas Anteriores</h3>
+                        <div id="previousChatsList">
+                            <p>Nenhuma conversa anterior encontrada.</p>
+                        </div>
+                        <button id="clearAllChatsBtn" class="btn-secondary btn-danger" style="display:none;"><i class="fas fa-trash-alt"></i> Limpar Histórico de Chats</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção do Chat (sem alterações) -->
+            <section id="chatSection" class="content-section">
+                <div class="section-header">
+                    <h2 class="gradient-text"><i class="fas fa-comments"></i> Chat com IA</h2>
+                    <div class="chat-header-controls">
+                        <p id="chatSubtitle">Modo: <span id="chatModeInfo"></span></p>
+                        <button id="backToPreChatBtn" class="btn-secondary"><i class="fas fa-arrow-left"></i> Voltar / Nova Conversa</button>
+                    </div>
+                </div>
+                <div id="chatDisplayArea">
+                    <div id="chatHistory" class="chat-history"></div>
+                    <div class="chat-input-area">
+                        <input type="text" id="userInput" placeholder="Digite sua mensagem aqui...">
+                        <button id="sendMessageBtn" aria-label="Enviar Mensagem"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção do Diário -->
+            <section id="diarySection" class="content-section">
+                 <div class="section-header">
+                    <h2 class="gradient-text"><i class="fas fa-book-medical"></i> Diário Emocional</h2>
+                    <p>Registre seus sentimentos e acompanhe seu bem-estar.</p>
+                </div>
+                <div class="diary-controls">
+                    <div class="diary-entry-form">
+                        <!-- Adicionando um campo oculto para o ID da entrada em edição -->
+                        <input type="hidden" id="editingEntryId" value="">
+                        <h3 id="diaryFormTitle">Novo Registro</h3> <!-- Título dinâmico -->
+                        <p>Como você está se sentindo hoje?</p>
+                        <div id="moodEmojis" class="mood-emojis"></div>
+                        <input type="hidden" id="selectedMood" value="">
+                        <textarea id="diaryText" placeholder="Descreva seus sentimentos, pensamentos ou eventos do dia..."></textarea>
+                        <button id="saveDiaryEntryBtn" class="btn-primary"><i class="fas fa-save"></i> Salvar Registro</button>
+                        <button id="cancelEditBtn" class="btn-secondary" style="display: none;"><i class="fas fa-times"></i> Cancelar Edição</button>
+                    </div>
+                    <div class="diary-filter-stats">
+                        <div class="diary-filter">
+                            <h3>Filtrar Registros</h3>
+                            <label for="filterMonth">Mês:</label>
+                            <select id="filterMonth"></select>
+                            <label for="filterYear">Ano:</label>
+                            <select id="filterYear"></select>
+                            <button id="applyFilterBtn" class="btn-secondary"><i class="fas fa-filter"></i> Aplicar</button>
+                            <button id="resetFilterBtn" class="btn-secondary"><i class="fas fa-undo"></i> Ver Todos</button>
+                        </div>
+                        <div class="mood-stats-container">
+                             <h3>Estatísticas (<span id="statsPeriod">Todos</span>)</h3>
+                             <canvas id="moodBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="diary-log">
+                    <h3>Seus Registros</h3>
+                    <div id="diaryLogEntries">
+                        <!-- As entradas com botões de editar/excluir serão geradas aqui pelo JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Técnicas (sem alterações) -->
+            <section id="techniquesSection" class="content-section">
+                <div class="section-header">
+                    <h2 class="gradient-text"><i class="fas fa-spa"></i> Técnicas de Bem-Estar</h2>
+                    <p>Recursos para cultivar sua paz interior e resiliência.</p>
+                </div>
+                <div class="techniques-grid">
+                    <div class="technique-card">
+                        <i class="fas fa-wind technique-icon gradient-text"></i>
+                        <h3>Respiração Diafragmática</h3>
+                        <p>Acalme o sistema nervoso. Inspire profundamente pelo nariz, expandindo o abdômen, segure por alguns segundos e expire lentamente pela boca.</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-hand-holding-heart technique-icon gradient-text"></i>
+                        <h3>Exercício de Gratidão</h3>
+                        <p>Mude o foco para o positivo. Liste 3 a 5 coisas pelas quais você é grato(a) hoje, por menores que sejam.</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-lightbulb technique-icon gradient-text"></i>
+                        <h3>Reestruturação Cognitiva</h3>
+                        <p>Desafie pensamentos negativos. Pergunte-se: "Qual a evidência para esse pensamento? Existe uma forma mais equilibrada de ver isso?"</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-pencil-alt technique-icon gradient-text"></i>
+                        <h3>Escrita Terapêutica</h3>
+                        <p>Processe emoções e ganhe clareza. Escreva livremente sobre seus sentimentos, preocupações ou experiências no seu diário.</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-street-view technique-icon gradient-text"></i>
+                        <h3>Mindfulness de 5 Sentidos</h3>
+                        <p>Ancore-se no presente. Identifique: 5 coisas que você vê, 4 que pode tocar, 3 que ouve, 2 que cheira e 1 que pode saborear.</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-brain technique-icon gradient-text"></i>
+                        <h3>Visualização Positiva</h3>
+                        <p>Crie um refúgio mental. Imagine um lugar seguro e calmo em detalhes, focando nas sensações de paz e relaxamento.</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-person-running technique-icon gradient-text"></i>
+                        <h3>Movimento Consciente</h3>
+                        <p>Conecte corpo e mente. Pratique alongamentos leves, yoga suave ou uma caminhada prestando atenção às sensações do corpo.</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-check-circle technique-icon gradient-text"></i>
+                        <h3>Lista de Conquistas</h3>
+                        <p>Reconheça seu progresso. Anote pequenas e grandes vitórias, reforçando sua capacidade e autoeficácia.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Sobre (sem alterações) -->
+            <section id="aboutSection" class="content-section">
+                <div class="section-header">
+                    <h2 class="gradient-text"><i class="fas fa-info-circle"></i> Sobre o PsicoBolso</h2>
+                </div>
+                <div class="about-content">
+                    <p>O <strong>Psicoterapia de Bolso (PsicoBolso)</strong> é um projeto demonstrativo de um chatbot terapêutico com inteligência artificial, projetado para oferecer um espaço de suporte emocional, introdução a técnicas de bem-estar e registro de sentimentos.</p>
+                    <h3><i class="fas fa-bullseye"></i> Nosso Objetivo</h3>
+                    <p>Nosso objetivo é fornecer uma ferramenta acessível para momentos de reflexão e autoconhecimento, ajudando você a explorar seus sentimentos e a descobrir pequenas estratégias para lidar com os desafios do dia a dia. Queremos ser um primeiro passo amigável no cuidado com a saúde mental.</p>
+                    <h3><i class="fas fa-exclamation-triangle"></i> Importante: Não Substitui Terapia Profissional</h3>
+                    <p>É crucial entender que o PsicoBolso <strong>NÃO é um substituto para a terapia com um psicólogo, psiquiatra ou qualquer outro profissional de saúde mental qualificado.</strong> A inteligência artificial pode oferecer suporte, mas não possui a capacidade de diagnóstico, tratamento personalizado ou a profundidade da conexão humana terapêutica.</p>
+                    <p>Se você está enfrentando dificuldades emocionais significativas, sofrimento intenso, transtornos mentais diagnosticados, ou se sente que precisa de um acompanhamento mais aprofundado, por favor, <strong>procure um profissional.</strong> Eles são as pessoas mais indicadas para te ajudar de forma segura e eficaz.</p>
+                    <h3><i class="fas fa-shield-alt"></i> Privacidade e Segurança</h3>
+                    <p>Nesta versão demonstrativa, os dados do seu diário emocional e o histórico de conversas (se salvos) são armazenados localmente no seu navegador (`localStorage`). Isso significa que eles não são enviados para nenhum servidor externo quando você apenas usa o app localmente.</p>
+                    <p>Ao interagir com o chat de IA, suas mensagens são enviadas para a API do Google Gemini para processamento e geração de respostas. Revise a política de privacidade do Google para entender como seus dados são tratados por eles.</p>
+                    <h3><i class="fas fa-code"></i> Sobre o Desenvolvimento</h3>
+                    <p>Este aplicativo foi criado como um exercício de desenvolvimento web, utilizando HTML, CSS, JavaScript e a API do Google Gemini. É um projeto em constante aprendizado e evolução.</p>
+                    <p>Agradecemos seu interesse e esperamos que o PsicoBolso possa, de alguma forma, contribuir para o seu bem-estar!</p>
+                    <p class="contact-info-simulated"><em>Para fins demonstrativos, não há informações de contato reais.</em></p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer>
+        <p>© 2023 Psicoterapia de Bolso. Projeto demonstrativo.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

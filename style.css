@@ -1,0 +1,900 @@
+:root {
+    /* Tema Escuro */
+    --primary-color: #4A90E2; /* Azul um pouco mais claro para contraste */
+    --primary-dark: #3A7BC8;
+    --secondary-color: #1E2A3A; /* Fundo principal escuro (azul petróleo profundo) */
+    --surface-color: #2C3E50; /* Cor para cartões, inputs, etc. (azul acinzentado) */
+    --accent-color: #2ECC71; /* Verde brilhante para destaque */
+    --accent-light: #A5D6A7;
+    --text-color: #EAEAEA; /* Texto principal claro */
+    --text-secondary-color: #B0BEC5; /* Texto secundário/placeholder */
+    --border-color: #455A64; /* Bordas sutis */
+    --shadow-color-light: rgba(255, 255, 255, 0.05); /* Sombra clara para efeito de elevação */
+    --shadow-color-dark: rgba(0, 0, 0, 0.2); /* Sombra escura tradicional */
+    --danger-color: #EF5350;
+
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Lora', serif;
+
+    --sidebar-width: 260px;
+    
+    /* Gradiente Azul-Verde */
+    --gradient-start: #4A90E2;
+    --gradient-end: #2ECC71;
+}
+
+/* Reset básico e Fontes Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Estilo para texto com gradiente */
+.gradient-text {
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block; /* Necessário para o background-clip funcionar corretamente */
+}
+.sidebar-logo.gradient-text { /* Para o ícone da sidebar, precisa ser um pouco diferente */
+    font-size: 2.2em; /* Ajuste o tamanho conforme necessário */
+    line-height: 1; /* Para centralizar verticalmente se o ícone tiver padding interno */
+}
+.sidebar-header h1.gradient-text {
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+
+/* Container Principal da Aplicação */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    box-shadow: 2px 0 10px var(--shadow-color-dark);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 0 25px 25px 25px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+/* .sidebar-logo já tratado com .gradient-text */
+/* .sidebar-header h1 já tratado com .gradient-text */
+
+
+.sidebar-nav {
+    flex-grow: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: var(--text-secondary-color);
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 400;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 1.1em;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    background-color: var(--secondary-color); /* Fundo principal para hover */
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-left-color: var(--primary-color);
+}
+
+.sidebar-footer {
+    padding: 20px 25px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8em;
+}
+.sidebar-footer .important-notice {
+    color: var(--text-secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.sidebar-footer .important-notice i {
+    color: var(--danger-color);
+}
+
+/* --- Conteúdo Principal --- */
+.main-content {
+    flex-grow: 1;
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.content-section {
+    display: none;
+    background-color: var(--surface-color);
+    padding: 30px; /* Aumentar padding interno */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color-dark);
+    animation: fadeIn 0.5s ease-out;
+    margin-bottom: 30px; /* Espaço entre seções se várias fossem visíveis */
+}
+
+.content-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-header h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    /* .gradient-text já cuida da cor */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.section-header h2 i { /* Ícone no título herda cor do gradiente */
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.section-header p {
+    font-size: 0.95em;
+    color: var(--text-secondary-color);
+    margin-top: 5px;
+}
+
+/* Botões Globais */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #FFFFFF; /* Texto branco para contraste com azul */
+    padding: 12px 25px; /* Um pouco maior */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase; /* Deixa mais "botão" */
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+/* --- Pré-Chat --- */
+.pre-chat-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+.pre-chat-warning {
+    background-color: rgba(239, 83, 80, 0.1); /* Fundo vermelho claro */
+    border-left: 4px solid var(--danger-color);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: var(--text-color);
+}
+.pre-chat-warning strong { color: var(--danger-color); }
+
+.pre-chat-content > p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary-color);
+}
+.help-channels {
+    margin: 25px 0;
+    padding: 15px;
+    background-color: var(--secondary-color); /* Um pouco diferente do fundo da seção */
+    border-radius: 8px;
+}
+.help-channels h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.help-channels ul {
+    list-style: none;
+    padding-left: 0;
+}
+.help-channels li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary-color);
+}
+.help-channels li i { color: var(--accent-color); }
+
+.pre-chat-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.pre-chat-form label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: -5px; /* Aproxima do input */
+}
+.pre-chat-form input[type="text"], .pre-chat-form select {
+    padding: 12px 15px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    font-size: 1em;
+}
+.pre-chat-form input[type="text"]::placeholder { color: var(--text-secondary-color); opacity: 0.7;}
+.pre-chat-form input[type="text"]:focus, .pre-chat-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3); /* Sombra de foco azul */
+}
+.pre-chat-form select option {
+    background-color: var(--surface-color); /* Cor de fundo para opções do select */
+    color: var(--text-color);
+}
+#startChatBtn {
+    margin-top: 15px;
+    align-self: center; /* Centraliza o botão */
+}
+
+
+/* --- Estilos do Chat --- */
+#chatSubtitle {
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+}
+#chatModeInfo {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.chat-history {
+    height: calc(100vh - var(--sidebar-width) - 150px); /* Ajuste de altura */
+    max-height: 550px;
+    overflow-y: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: var(--secondary-color); /* Fundo um pouco mais claro que o surface */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+}
+.chat-message p {
+    padding: 12px 18px;
+    border-radius: 18px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px var(--shadow-color-dark);
+}
+.chat-message .sender {
+    font-size: 0.8em;
+    color: var(--text-secondary-color);
+    margin-bottom: 4px;
+    opacity: 0.8;
+}
+
+.chat-message.user {
+    align-items: flex-end;
+    margin-left: auto;
+}
+.chat-message.user p {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    border-bottom-right-radius: 5px;
+}
+.chat-message.user .sender { text-align: right; margin-right: 10px; }
+
+.chat-message.bot {
+    align-items: flex-start;
+    margin-right: auto;
+}
+.chat-message.bot p {
+    background-color: var(--surface-color); /* Um pouco mais escuro que o histórico */
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-bottom-left-radius: 5px;
+}
+.chat-message.bot .sender { margin-left: 10px; }
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--surface-color); /* Mesmo que cartões */
+    border-radius: 25px; /* Input e botão dentro de uma "pílula" */
+}
+.chat-input-area input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: none; /* Sem borda, já está dentro do container */
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: transparent; /* Transparente para pegar cor do container */
+    color: var(--text-color);
+}
+.chat-input-area input[type="text"]::placeholder { color: var(--text-secondary-color); }
+.chat-input-area input[type="text"]:focus { outline: none; }
+
+.chat-input-area button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px; /* Um pouco menor */
+    height: 44px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+.chat-input-area button:hover { background-color: var(--primary-dark); }
+
+/* --- Estilos do Diário Emocional --- */
+.diary-controls {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Para responsividade */
+}
+.diary-entry-form {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: var(--secondary-color); /* Fundo um pouco mais claro */
+    border-radius: 8px;
+}
+.diary-filter-stats {
+    flex: 1.2;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.diary-filter {
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+.diary-filter h3, .diary-entry-form h3, .mood-stats-container h3 {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--primary-color); /* Usar cor primária nos títulos internos */
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+.diary-filter label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-secondary-color);
+}
+.diary-filter select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+}
+.diary-filter select option { background-color: var(--surface-color); color: var(--text-color); }
+.diary-filter button { margin-top: 10px; margin-right: 10px;}
+
+.mood-emojis {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.mood-emojis button {
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    font-size: 2.2em;
+    padding: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+    filter: grayscale(30%); /* Emojis um pouco menos vibrantes por padrão */
+}
+.mood-emojis button:hover { transform: scale(1.15); filter: grayscale(0%); }
+.mood-emojis button.selected {
+    border-color: var(--accent-color);
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+#diaryText {
+    width: 100%;
+    height: 120px;
+    padding: 12px 15px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-family: var(--font-primary);
+    font-size: 0.95em;
+    resize: vertical;
+    color: var(--text-color);
+}
+#diaryText::placeholder { color: var(--text-secondary-color); opacity: 0.7;}
+#diaryText:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+}
+#saveDiaryEntryBtn { width: 100%; }
+
+.diary-log h3 {
+    font-size: 1.4em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+#diaryLogEntries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Layout de cards */
+    gap: 20px;
+}
+.diary-log-entry {
+    background-color: var(--secondary-color); /* Mesmo que formulário e filtro */
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color); /* Destaque */
+    box-shadow: 0 2px 5px var(--shadow-color-dark);
+}
+.diary-log-entry .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.diary-log-entry .mood { font-size: 1.8em; }
+.diary-log-entry .date {
+    font-size: 0.85em;
+    color: var(--text-secondary-color);
+    font-style: italic;
+}
+.diary-log-entry .text-content {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--text-color);
+    word-wrap: break-word;
+}
+
+/* Gráfico de Humor */
+.mood-stats-container {
+    padding: 20px;
+    background-color: var(--secondary-color); /* Mesmo que formulário e filtro */
+    border-radius: 8px;
+}
+#moodBarChart { max-height: 280px; }
+
+
+/* --- Estilos das Técnicas de Bem-Estar --- */
+.techniques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+.technique-card {
+    background-color: var(--secondary-color); /* Fundo um pouco mais claro que o da seção */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px var(--shadow-color-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--border-color);
+}
+.technique-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px var(--shadow-color-dark);
+    border-color: var(--primary-color);
+}
+.technique-icon { /* Ícone já estilizado com .gradient-text no HTML */
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: var(--surface-color); /* Fundo do ícone */
+    border-radius: 50%;
+}
+.technique-card h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+.technique-card p {
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-left: var(--sidebar-width);
+    font-size: 0.85em;
+    color: var(--text-secondary-color);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+}
+
+/* --- Responsividade (ajustes para tema escuro podem ser mínimos aqui) --- */
+@media (max-width: 992px) {
+    .diary-controls {
+        flex-direction: column;
+    }
+    .diary-filter-stats { /* Ocupa largura total abaixo do formulário */
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container { flex-direction: column; }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+        box-shadow: 0 2px 5px var(--shadow-color-dark);
+        overflow-x: auto;
+        background-color: var(--surface-color); /* Mesmo fundo para a barra no mobile */
+    }
+    .sidebar-header { padding: 0 10px; border-bottom: none; margin-bottom: 0; }
+    .sidebar-header h1 { font-size: 1.2em; }
+    .sidebar-logo { font-size: 1.5em; margin-right: 10px; }
+
+    .sidebar-nav { display: flex; flex-direction: row; flex-grow: 1; justify-content: flex-start; }
+    .nav-item {
+        padding: 10px 12px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        font-size: 0.85em;
+    }
+    .nav-item.active { border-bottom-color: var(--primary-color); border-left: none; }
+    .nav-item i { margin-right: 5px; font-size: 1em; }
+    .nav-item span { display: none; } /* Ou ajustar tamanho da fonte */
+
+    .sidebar-footer { display: none; }
+    .main-content { margin-left: 0; padding: 20px; }
+    .chat-history { max-height: calc(100vh - 260px); } /* Ajustar altura */
+    .section-header h2 { font-size: 1.6em; }
+    #diaryLogEntries { grid-template-columns: 1fr; } /* Uma coluna no mobile */
+}
+
+@media (max-width: 480px) {
+    .chat-input-area { flex-direction: column; gap: 8px; padding: 15px; border-radius: 15px; }
+    .chat-input-area input[type="text"] { width: 100%; padding: 12px; background-color: var(--secondary-color); border-radius: 20px;}
+    .chat-input-area button { width: 100%; border-radius: 20px; }
+    .mood-emojis button { font-size: 1.8em; }
+    .techniques-grid { grid-template-columns: 1fr; }
+    .diary-filter button { margin-right: 5px; padding: 8px 12px; font-size: 0.9em; }
+}
+
+/* Scrollbar customizada para tema escuro (opcional) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+
+/* ... (todo o CSS anterior) ... */
+
+/* --- Pré-Chat --- */
+.previous-chats-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.previous-chats-section h3 {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#previousChatsList {
+    max-height: 200px; /* Limita altura da lista */
+    overflow-y: auto;
+    padding-right: 10px; /* Espaço para scrollbar */
+}
+.previous-chat-item {
+    background-color: var(--secondary-color);
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.previous-chat-item:hover {
+    background-color: var(--surface-color); /* Um pouco mais escuro no hover */
+    border-color: var(--primary-color);
+}
+.previous-chat-item .chat-date {
+    font-weight: 600;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 5px;
+}
+.previous-chat-item .chat-preview {
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+#clearAllChatsBtn {
+    margin-top: 15px;
+    /* Estilo para botão de perigo */
+}
+.btn-danger {
+    background-color: var(--danger-color) !important; /* Override para btn-secondary */
+    border-color: var(--danger-color) !important;
+    color: #FFFFFF !important;
+}
+.btn-danger:hover {
+    background-color: #D32F2F !important; /* Mais escuro no hover */
+    border-color: #D32F2F !important;
+}
+
+
+/* --- Estilos do Chat --- */
+.chat-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* Adicionado para separar do chat history */
+}
+#chatSubtitle {
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    margin: 0; /* Reset margin */
+}
+#backToPreChatBtn {
+    font-size: 0.85em;
+    padding: 8px 15px;
+}
+
+#chatDisplayArea { /* Novo container para o chat */
+    display: flex;
+    flex-direction: column;
+    /* Altura calculada para preencher o espaço, considerando o header da seção e o chat-header-controls */
+    height: calc(100vh - var(--sidebar-width) - 150px - 50px); /* Ajustar conforme necessário */
+    max-height: 600px; /* Limite máximo geral */
+}
+
+.chat-history {
+    flex-grow: 1; /* Faz o histórico ocupar o espaço disponível */
+    overflow-y: auto;
+    padding: 20px;
+    margin-bottom: 0; /* Removido margin-bottom, pois o input agora está dentro do chatDisplayArea */
+    background-color: var(--secondary-color);
+    border-radius: 8px 8px 0 0; /* Bordas arredondadas apenas no topo */
+    border: 1px solid var(--border-color);
+    border-bottom: none; /* Sem borda inferior, pois o input se conecta */
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px; /* Aumentado padding */
+    background-color: var(--surface-color);
+    border-radius: 0 0 8px 8px; /* Bordas arredondadas apenas na base */
+    border: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color); /* Linha sutil de separação */
+}
+/* ... (resto do CSS permanece o mesmo) ... */
+
+/* Ajuste para o diary-log-entry no-entries */
+.no-entries {
+    text-align: center;
+    color: var(--text-secondary-color);
+    padding: 20px;
+    grid-column: 1 / -1; /* Para ocupar toda a largura do grid */
+}
+
+
+/* ... (todo o CSS anterior) ... */
+
+/* --- Estilos da Seção Sobre --- */
+.about-content {
+    max-width: 750px; /* Limita a largura para melhor legibilidade */
+    margin: 0 auto;
+    text-align: left; /* Alinha o texto à esquerda */
+    line-height: 1.8; /* Melhora a leitura de parágrafos longos */
+}
+
+.about-content h3 {
+    font-size: 1.3em;
+    color: var(--primary-color);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+    color: var(--text-secondary-color); /* Cor de texto secundária para parágrafos */
+}
+
+.about-content strong {
+    color: var(--text-color); /* Texto principal para ênfase */
+    font-weight: 600;
+}
+
+.about-content .contact-info-simulated {
+    margin-top: 30px;
+    font-style: italic;
+    color: var(--text-secondary-color);
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* ... (todo o CSS anterior) ... */
+
+/* --- Estilos do Diário Emocional --- */
+/* ... (estilos anteriores do diário) ... */
+
+.diary-log-entry .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.diary-log-entry .entry-actions { /* Container para os botões de ação */
+    display: flex;
+    gap: 10px;
+}
+
+.diary-log-entry .action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95em; /* Tamanho do ícone */
+    color: var(--text-secondary-color);
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.diary-log-entry .action-btn:hover {
+    color: var(--text-color);
+    background-color: var(--border-color); /* Um fundo sutil no hover */
+}
+
+.diary-log-entry .edit-btn:hover {
+    color: var(--primary-color);
+}
+.diary-log-entry .delete-btn:hover {
+    color: var(--danger-color);
+}
+
+#cancelEditBtn { /* Estilo para o botão de cancelar edição */
+    margin-top: 10px;
+    width: 100%; /* Para ocupar a largura total abaixo do botão de salvar/atualizar */
+}
+
+/* ... (resto do CSS) ... */
