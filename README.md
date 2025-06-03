@@ -73,8 +73,9 @@ Para executar o PsicoBolso em sua máquina local, siga estes passos:
 
 2.  **Obtenha uma Chave de API do Google Gemini:**
     *   Acesse o [Google AI Studio](https://aistudio.google.com/).
+    *   Clique em "Get API key" ou diretamente [aqui](https://aistudio.google.com/apikey).
+    *   Clique em "Criar chave de API" para gerar sua chave.
     *   Crie um novo projeto ou use um existente.
-    *   Clique em "Get API key" para gerar sua chave.
 
 3.  **Configure a Chave de API no Projeto:**
     *   Abra o arquivo `script.js`.
@@ -85,7 +86,7 @@ Para executar o PsicoBolso em sua máquina local, siga estes passos:
     *   Substitua `'SUA_CHAVE_API_GEMINI_AQUI'` pela sua chave de API real.
 
 4.  **Abra o `index.html`:**
-    *   Simplesmente abra o arquivo `index.html` em seu navegador de preferência (Google Chrome, Firefox, etc.). Não é necessário um servidor local, mas para algumas funcionalidades (como a API fetch em alguns contextos de segurança), pode ser útil usar uma extensão como o "Live Server" no VS Code.
+    *   Simplesmente abra o arquivo `index.html` em seu navegador de preferência (Google Chrome, Firefox, etc.). Não é necessário um servidor local, mas pode ser útil usar uma extensão como o "Live Server" no VS Code.
 
 ## 🌐 Demonstração da Plataforma
 
