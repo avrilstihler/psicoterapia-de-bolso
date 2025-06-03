@@ -892,17 +892,3 @@ footer {
     width: 100%; /* Para ocupar a largura total abaixo do botão de salvar/atualizar */
 }
 
-footer {
-  width: 100%;
-  padding: 15px 20px;
-  box-sizing: border-box;
-  text-align: center;
-  word-wrap: break-word;
-}
-
-@media (max-width: 600px) {
-  footer {
-    padding: 15px 10px;
-    text-align: center;
-  }
-}
