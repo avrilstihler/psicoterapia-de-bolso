@@ -89,7 +89,7 @@ Para executar o PsicoBolso em sua máquina local, siga estes passos:
 
 ## 🌐 Demonstração da Plataforma
 
-Você pode explorar a plataforma sem configurar sua própria API através do [GitHub Pages](https://seu-usuario.github.io/seu-repositorio/).  
+Você pode explorar a plataforma sem configurar sua própria API através do [GitHub Pages](https://avrilstihler.github.io/psicoterapia-de-bolso/).  
 
 > **Observação:** A funcionalidade de chat e conversa com a IA **não estará disponível** nesta versão de demonstração, pois requer uma chave de API configurada.
 
