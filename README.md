@@ -91,7 +91,7 @@ Para executar o PsicoBolso em sua máquina local, siga estes passos:
 
 Uma versão hospedada no GitHub Pages está disponível para que você possa explorar a interface da plataforma:
 
-Clique [aqui](https://seuusuario.github.io/psicoterapia-de-bolso) para acessar.
+Clique [aqui](https://avrilstihler.github.io/psicoterapia-de-bolso) para acessar.
 
 > **⚠️ Aviso:** funcionalidades que dependem da API do Gemini, como chat e interação com IA, não estarão disponíveis nessa versão. Elas funcionam apenas após a configuração da API, conforme descrito no tutorial acima.
 
