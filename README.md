@@ -86,6 +86,15 @@ Para executar o PsicoBolso em sua máquina local, siga estes passos:
 
 4.  **Abra o `index.html`:**
     *   Simplesmente abra o arquivo `index.html` em seu navegador de preferência (Google Chrome, Firefox, etc.). Não é necessário um servidor local, mas para algumas funcionalidades (como a API fetch em alguns contextos de segurança), pode ser útil usar uma extensão como o "Live Server" no VS Code.
+  
+## 🌐 Acesse a Plataforma Online
+
+Uma versão hospedada no GitHub Pages está disponível para que você possa explorar a interface da plataforma:
+
+[Psicoterapia de Bolso](https://seuusuario.github.io/psicoterapia-de-bolso)
+
+> **⚠️ Aviso:** funcionalidades que dependem da API do Gemini, como chat e interação com IA, não estarão disponíveis nessa versão. Elas funcionam apenas após a configuração da API, conforme descrito no tutorial acima.
+
 
 ## 📄 Licença
 
