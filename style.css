@@ -85,8 +85,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* .sidebar-logo já tratado com .gradient-text */
-/* .sidebar-header h1 já tratado com .gradient-text */
 
 
 .sidebar-nav {
@@ -807,7 +805,7 @@ footer {
 }
 
 
-/* ... (todo o CSS anterior) ... */
+
 
 /* --- Estilos da Seção Sobre --- */
 .about-content {
@@ -847,10 +845,7 @@ footer {
     text-align: center;
 }
 
-/* ... (todo o CSS anterior) ... */
 
-/* --- Estilos do Diário Emocional --- */
-/* ... (estilos anteriores do diário) ... */
 
 .diary-log-entry .entry-header {
     display: flex;
@@ -897,4 +892,17 @@ footer {
     width: 100%; /* Para ocupar a largura total abaixo do botão de salvar/atualizar */
 }
 
-/* ... (resto do CSS) ... */
+footer {
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 15px 10px;
+    text-align: center;
+  }
+}
